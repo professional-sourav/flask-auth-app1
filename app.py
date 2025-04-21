@@ -4,8 +4,12 @@ from flask_jwt_extended import JWTManager, create_access_token
 from config import Config
 from models import db, User
 
+from admin.users import users_bp
+
 app = Flask(__name__)
 app.config.from_object(Config)
+
+app.register_blueprint(users_bp, url_prefix='/admin')
 
 db.init_app(app)
 with app.app_context():
