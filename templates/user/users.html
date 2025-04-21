@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<a href="{{ url_for('create_user') }}">Create New user</a>
+<h2>List of All Users</h2>
+<div>
+    Sort by ID: 
+    <a href="{{ url_for('users', sort='asc') }}" {% if current_sort == 'asc' %}style="font-weight: bold;"{% endif %}>Ascending</a> | 
+    <a href="{{ url_for('users', sort='desc') }}" {% if current_sort == 'desc' %}style="font-weight: bold;"{% endif %}>Descending</a>
+</div>
+<br>
+<table style="width:100%" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            <a href="{{ url_for('edit_user', user_id=user.id) }}">Edit</a> |
+            <a onclick="return confirm('Are you sure?')" href="{{ url_for('delete_user', user_id=user.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

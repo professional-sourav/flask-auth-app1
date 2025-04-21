@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<a href="{{ url_for('create_user') }}">Create New user</a> |
+<a href="{{ url_for('users') }}">Users</a>
+{% if user %}
+<h1>User Details of {{ user.name }}</h1>
+
+<table style="width:100%" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.email }}</td>
+        <td></td>
+    </tr>
+</table>
+{% else %}
+<p>No user found</p>
+{% endif %}
+
+</body>
+</html>
+
